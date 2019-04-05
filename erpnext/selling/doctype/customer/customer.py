@@ -3,14 +3,15 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe.model.naming import make_autoname
+from frappe.model.naming import set_name_by_naming_series
 from frappe import _, msgprint, throw
 import frappe.defaults
-from frappe.utils import flt, cint, cstr
-from frappe.desk.reportview import build_match_conditions
+from frappe.utils import flt, cint, cstr, today
+from frappe.desk.reportview import build_match_conditions, get_filters_cond
 from erpnext.utilities.transaction_base import TransactionBase
 from erpnext.accounts.party import validate_party_accounts, get_dashboard_info, get_timeline_data # keep this
 from frappe.contacts.address_and_contact import load_address_and_contact, delete_contact_and_address
+from frappe.model.rename_doc import update_linked_doctypes
 
 class Customer(TransactionBase):
 	def get_feed(self):
@@ -22,7 +23,7 @@ class Customer(TransactionBase):
 		self.load_dashboard_info()
 
 	def load_dashboard_info(self):
-		info = get_dashboard_info(self.doctype, self.name)
+		info = get_dashboard_info(self.doctype, self.name, self.loyalty_program)
 		self.set_onload('dashboard_info', info)
 
 	def autoname(self):
@@ -30,10 +31,7 @@ class Customer(TransactionBase):
 		if cust_master_name == 'Customer Name':
 			self.name = self.get_customer_name()
 		else:
-			if not self.naming_series:
-				frappe.throw(_("Series is mandatory"), frappe.MandatoryError)
-
-			self.name = make_autoname(self.naming_series+'.#####')
+			set_name_by_naming_series(self)
 
 	def get_customer_name(self):
 		if frappe.db.get_value("Customer", self.customer_name):
@@ -53,6 +51,21 @@ class Customer(TransactionBase):
 		self.flags.old_lead = self.lead_name
 		validate_party_accounts(self)
 		self.validate_credit_limit_on_change()
+		self.set_loyalty_program()
+		self.check_customer_group_change()
+
+		# set loyalty program tier
+		if frappe.db.exists('Customer', self.name):
+			customer = frappe.get_doc('Customer', self.name)
+			if self.loyalty_program == customer.loyalty_program and not self.loyalty_program_tier:
+				self.loyalty_program_tier = customer.loyalty_program_tier
+
+	def check_customer_group_change(self):
+		frappe.flags.customer_group_changed = False
+
+		if not self.get('__islocal'):
+			if self.customer_group != frappe.db.get_value('Customer', self.name, 'customer_group'):
+				frappe.flags.customer_group_changed = True
 
 	def on_update(self):
 		self.validate_name_with_customer_group()
@@ -65,8 +78,16 @@ class Customer(TransactionBase):
 		if self.flags.is_new_doc:
 			self.create_lead_address_contact()
 
+		self.update_customer_groups()
+
+	def update_customer_groups(self):
+		ignore_doctypes = ["Lead", "Opportunity", "POS Profile", "Tax Rule", "Pricing Rule"]
+		if frappe.flags.customer_group_changed:
+			update_linked_doctypes('Customer', frappe.db.escape(self.name), 'Customer Group',
+				self.customer_group, ignore_doctypes)
+
 	def create_primary_contact(self):
-		if not self.customer_primary_contact:
+		if not self.customer_primary_contact and not self.lead_name:
 			if self.mobile_no or self.email_id:
 				contact = make_contact(self)
 				self.db_set('customer_primary_contact', contact.name)
@@ -146,7 +167,8 @@ class Customer(TransactionBase):
 			frappe.throw(_("A Customer Group exists with same name please change the Customer name or rename the Customer Group"), frappe.NameError)
 
 	def validate_credit_limit_on_change(self):
-		if self.get("__islocal") or self.credit_limit == frappe.db.get_value("Customer", self.name, "credit_limit"):
+		if self.get("__islocal") or not self.credit_limit \
+			or self.credit_limit == frappe.db.get_value("Customer", self.name, "credit_limit"):
 			return
 
 		for company in frappe.get_all("Company"):
@@ -155,6 +177,11 @@ class Customer(TransactionBase):
 				frappe.throw(_("""New credit limit is less than current outstanding amount for the customer. Credit limit has to be atleast {0}""").format(outstanding_amt))
 
 	def on_trash(self):
+		if self.customer_primary_contact:
+			frappe.db.sql("""update `tabCustomer`
+				set customer_primary_contact=null, mobile_no=null, email_id=null
+				where name=%s""", self.name)
+
 		delete_contact_and_address('Customer', self.name)
 		if self.lead_name:
 			frappe.db.sql("update `tabLead` set status='Interested' where name=%s", self.lead_name)
@@ -163,8 +190,37 @@ class Customer(TransactionBase):
 		if frappe.defaults.get_global_default('cust_master_name') == 'Customer Name':
 			frappe.db.set(self, "customer_name", newdn)
 
+	def set_loyalty_program(self):
+		if self.loyalty_program: return
+		loyalty_program = get_loyalty_programs(self)
+		if not loyalty_program: return
+		if len(loyalty_program) == 1:
+			self.loyalty_program = loyalty_program[0]
+		else:
+			frappe.msgprint(_("Multiple Loyalty Program found for the Customer. Please select manually."))
 
-def get_customer_list(doctype, txt, searchfield, start, page_len, filters):
+@frappe.whitelist()
+def get_loyalty_programs(doc):
+	''' returns applicable loyalty programs for a customer '''
+	from frappe.desk.treeview import get_children
+
+	lp_details = []
+	loyalty_programs = frappe.get_all("Loyalty Program",
+		fields=["name", "customer_group", "customer_territory"],
+		filters={"auto_opt_in": 1, "from_date": ["<=", today()],
+			"ifnull(to_date, '2500-01-01')": [">=", today()]})
+
+	for loyalty_program in loyalty_programs:
+		customer_groups = [d.value for d in get_children("Customer Group", loyalty_program.customer_group)] + [loyalty_program.customer_group]
+		customer_territories = [d.value for d in get_children("Territory", loyalty_program.customer_territory)] + [loyalty_program.customer_territory]
+
+		if (not loyalty_program.customer_group or doc.customer_group in customer_groups)\
+			and (not loyalty_program.customer_territory or doc.territory in customer_territories):
+			lp_details.append(loyalty_program.name)
+
+	return lp_details
+
+def get_customer_list(doctype, txt, searchfield, start, page_len, filters=None):
 	if frappe.db.get_default("cust_master_name") == "Customer Name":
 		fields = ["name", "customer_group", "territory"]
 	else:
@@ -172,6 +228,10 @@ def get_customer_list(doctype, txt, searchfield, start, page_len, filters):
 
 	match_conditions = build_match_conditions("Customer")
 	match_conditions = "and {}".format(match_conditions) if match_conditions else ""
+
+	if filters:
+		filter_conditions = get_filters_cond(doctype, filters, [])
+		match_conditions += "{}".format(filter_conditions)
 
 	return frappe.db.sql("""select %s from `tabCustomer` where docstatus < 2
 		and (%s like %s or customer_name like %s)
@@ -184,12 +244,14 @@ def get_customer_list(doctype, txt, searchfield, start, page_len, filters):
 		("%%%s%%" % txt, "%%%s%%" % txt, "%%%s%%" % txt, "%%%s%%" % txt, start, page_len))
 
 
-def check_credit_limit(customer, company):
-	customer_outstanding = get_customer_outstanding(customer, company)
+def check_credit_limit(customer, company, ignore_outstanding_sales_order=False, extra_amount=0):
+	customer_outstanding = get_customer_outstanding(customer, company, ignore_outstanding_sales_order)
+	if extra_amount > 0:
+		customer_outstanding += flt(extra_amount)
 
 	credit_limit = get_credit_limit(customer, company)
 	if credit_limit > 0 and flt(customer_outstanding) > credit_limit:
-		msgprint(_("Credit limit has been crossed for customer {0} {1}/{2}")
+		msgprint(_("Credit limit has been crossed for customer {0} ({1}/{2})")
 			.format(customer, customer_outstanding, credit_limit))
 
 		# If not authorized person raise exception
@@ -230,7 +292,8 @@ def get_customer_outstanding(customer, company, ignore_outstanding_sales_order=F
 			and dn.customer=%s and dn.company=%s
 			and dn.docstatus = 1 and dn.status not in ('Closed', 'Stopped')
 			and ifnull(dn_item.against_sales_order, '') = ''
-			and ifnull(dn_item.against_sales_invoice, '') = ''""", (customer, company), as_dict=True)
+			and ifnull(dn_item.against_sales_invoice, '') = ''
+		""", (customer, company), as_dict=True)
 
 	outstanding_based_on_dn = 0.0
 
@@ -250,14 +313,14 @@ def get_credit_limit(customer, company):
 	credit_limit = None
 
 	if customer:
-		credit_limit, customer_group = frappe.db.get_value("Customer",
+		credit_limit, customer_group = frappe.get_cached_value("Customer",
 			customer, ["credit_limit", "customer_group"])
 
 		if not credit_limit:
-			credit_limit = frappe.db.get_value("Customer Group", customer_group, "credit_limit")
+			credit_limit = frappe.get_cached_value("Customer Group", customer_group, "credit_limit")
 
 	if not credit_limit:
-		credit_limit = frappe.db.get_value("Company", company, "credit_limit")
+		credit_limit = frappe.get_cached_value('Company',  company,  "credit_limit")
 
 	return flt(credit_limit)
 
@@ -295,12 +358,24 @@ def make_address(args, is_primary_address=1):
 	return address
 
 def get_customer_primary_contact(doctype, txt, searchfield, start, page_len, filters):
-	customer = frappe.db.escape(filters.get('customer'))
+	customer = filters.get('customer')
 	return frappe.db.sql("""
 		select `tabContact`.name from `tabContact`, `tabDynamic Link`
 			where `tabContact`.name = `tabDynamic Link`.parent and `tabDynamic Link`.link_name = %(customer)s
 			and `tabDynamic Link`.link_doctype = 'Customer' and `tabContact`.is_primary_contact = 1
 			and `tabContact`.name like %(txt)s
+		""", {
+			'customer': customer,
+			'txt': '%%%s%%' % txt
+		})
+
+def get_customer_primary_address(doctype, txt, searchfield, start, page_len, filters):
+	customer = frappe.db.escape(filters.get('customer'))
+	return frappe.db.sql("""
+		select `tabAddress`.name from `tabAddress`, `tabDynamic Link`
+			where `tabAddress`.name = `tabDynamic Link`.parent and `tabDynamic Link`.link_name = %(customer)s
+			and `tabDynamic Link`.link_doctype = 'Customer' and `tabAddress`.is_primary_address = 1
+			and `tabAddress`.name like %(txt)s
 		""", {
 			'customer': customer,
 			'txt': '%%%s%%' % txt

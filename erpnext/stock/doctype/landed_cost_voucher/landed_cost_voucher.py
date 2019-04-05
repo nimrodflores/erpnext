@@ -46,10 +46,10 @@ class LandedCostVoucher(Document):
 		if not self.get("purchase_receipts"):
 			frappe.throw(_("Please enter Receipt Document"))
 
-		
+
 	def validate_purchase_receipts(self):
 		receipt_documents = []
-		
+
 		for d in self.get("purchase_receipts"):
 			if frappe.db.get_value(d.receipt_document_type, d.receipt_document, "docstatus") != 1:
 				frappe.throw(_("Receipt document must be submitted"))
@@ -60,8 +60,8 @@ class LandedCostVoucher(Document):
 			if not item.receipt_document:
 				frappe.throw(_("Item must be added using 'Get Items from Purchase Receipts' button"))
 			elif item.receipt_document not in receipt_documents:
-				frappe.throw(_("Item Row {idx}: {doctype} {docname} does not exist in above '{doctype}' table")
-					.format(idx=item.idx, doctype=item.receipt_document_type, docname=item.receipt_document))
+				frappe.throw(_("Item Row {0}: {1} {2} does not exist in above '{1}' table")
+					.format(item.idx, item.receipt_document_type, item.receipt_document))
 
 			if not item.cost_center:
 				frappe.throw(_("Row {0}: Cost center is required for an item {1}")
@@ -72,16 +72,16 @@ class LandedCostVoucher(Document):
 
 	def validate_applicable_charges_for_item(self):
 		based_on = self.distribute_charges_based_on.lower()
-		
+
 		total = sum([flt(d.get(based_on)) for d in self.get("items")])
-		
+
 		if not total:
 			frappe.throw(_("Total {0} for all items is zero, may be you should change 'Distribute Charges Based On'").format(based_on))
-		
+
 		total_applicable_charges = sum([flt(d.applicable_charges) for d in self.get("items")])
 
 		precision = get_field_precision(frappe.get_meta("Landed Cost Item").get_field("applicable_charges"),
-		currency=frappe.db.get_value("Company", self.company, "default_currency", cache=True))
+		currency=frappe.get_cached_value('Company',  self.company,  "default_currency"))
 
 		diff = flt(self.total_taxes_and_charges) - flt(total_applicable_charges)
 		diff = flt(diff, precision)
@@ -109,9 +109,9 @@ class LandedCostVoucher(Document):
 			# set valuation amount in pr item
 			doc.update_valuation_rate("items")
 
-			# save will update landed_cost_voucher_amount and voucher_amount in PR,
-			# as those fields are allowed to edit after submit
-			doc.save()
+			# db_update will update and save landed_cost_voucher_amount and voucher_amount in PR
+			for item in doc.get("items"):
+				item.db_update()
 
 			# update latest valuation rate in serial no
 			self.update_rate_in_serial_no(doc)

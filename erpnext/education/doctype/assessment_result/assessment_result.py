@@ -10,19 +10,16 @@ from frappe.model.document import Document
 from erpnext.education.api import get_grade
 from erpnext.education.api import get_assessment_details
 from frappe.utils.csvutils import getlink
-
+import erpnext.education
 
 class AssessmentResult(Document):
 	def validate(self):
-		if self.student and not self.student_name:
-			self.student_name = frappe.db.get_value("Student", self.student, "title")
-		self.grading_scale = frappe.db.get_value("Assessment Plan", self.assessment_plan, "grading_scale")
+		erpnext.education.validate_student_belongs_to_group(self.student, self.student_group)
 		self.validate_maximum_score()
 		self.validate_grade()
 		self.validate_duplicate()
 
 	def validate_maximum_score(self):
-		self.maximum_score = frappe.db.get_value("Assessment Plan", self.assessment_plan, "maximum_assessment_score")
 		assessment_details = get_assessment_details(self.assessment_plan)
 		max_scores = {}
 		for d in assessment_details:
@@ -32,7 +29,7 @@ class AssessmentResult(Document):
 			d.maximum_score = max_scores.get(d.assessment_criteria)
 			if d.score > d.maximum_score:
 				frappe.throw(_("Score cannot be greater than Maximum Score"))
-		
+
 	def validate_grade(self):
 		self.total_score = 0.0
 		for d in self.details:

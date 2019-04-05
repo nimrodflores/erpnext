@@ -120,7 +120,7 @@ def get_data():
 				{
 					"type": "report",
 					"is_query_report": True,
-					"name": "Addresses And Contacts",
+					"name": "Address And Contacts",
 					"label": _("Sales Partner Addresses And Contacts"),
 					"doctype": "Address",
 					"route_options": {
@@ -173,6 +173,11 @@ def get_data():
 					"name": "Industry Type",
 					"description": _("Track Leads by Industry Type.")
 				},
+				{
+					"type": "doctype",
+					"name": "Lead Source",
+					"description": _("Track Leads by Lead Source.")
+				},
 			]
 		},
 		{
@@ -180,10 +185,10 @@ def get_data():
 			"icon": "fa fa-table",
 			"items": [
 				{
-					"type": "page",
-					"name": "sales-analytics",
-					"label": _("Sales Analytics"),
-					"icon": "fa fa-bar-chart",
+					"type": "report",
+					"is_query_report": True,
+					"name": "Sales Analytics",
+					"doctype": "Sales Order"
 				},
 				{
 					"type": "page",
@@ -225,7 +230,7 @@ def get_data():
 				{
 					"type": "report",
 					"is_query_report": True,
-					"name": "Addresses And Contacts",
+					"name": "Address And Contacts",
 					"label": _("Customer Addresses And Contacts"),
 					"doctype": "Address",
 					"route_options": {
@@ -280,6 +285,12 @@ def get_data():
 					"name": "Customer Credit Balance",
 					"doctype": "Customer"
 				},
+				{
+					"type": "report",
+					"is_query_report": True,
+					"name": "Customers Without Any Sales Transactions",
+					"doctype": "Customer"
+				},
 			]
 		},
 		{
@@ -314,7 +325,7 @@ def get_data():
 				{
 					"type": "help",
 					"label": _("Sales Order to Payment"),
-					"youtube_id": "7AMq4lqkN4A"
+					"youtube_id": "1eP90MWoDQM"
 				},
 				{
 					"type": "help",

@@ -48,7 +48,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -65,7 +64,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -134,7 +132,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -151,7 +148,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -220,7 +216,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -237,7 +232,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -306,7 +300,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -323,7 +316,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -392,7 +384,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -409,7 +400,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -478,7 +468,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -495,7 +484,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -564,7 +552,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -581,7 +568,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -650,7 +636,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -667,7 +652,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -736,7 +720,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -753,7 +736,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -822,7 +804,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -839,7 +820,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -908,7 +888,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -925,7 +904,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -994,7 +972,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1011,7 +988,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1080,7 +1056,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1097,7 +1072,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1166,7 +1140,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1183,7 +1156,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1252,7 +1224,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1269,7 +1240,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1338,7 +1308,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1355,7 +1324,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1424,7 +1392,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1441,7 +1408,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1510,7 +1476,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1527,7 +1492,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1596,7 +1560,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1613,7 +1576,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1682,7 +1644,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1699,7 +1660,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1768,7 +1728,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1785,7 +1744,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1854,7 +1812,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1871,7 +1828,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -1940,7 +1896,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -1957,7 +1912,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2026,7 +1980,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2043,7 +1996,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2112,7 +2064,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2129,7 +2080,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2198,7 +2148,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2215,7 +2164,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2284,7 +2232,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2301,7 +2248,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2370,7 +2316,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2387,7 +2332,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2456,7 +2400,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2473,7 +2416,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2542,7 +2484,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2559,7 +2500,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2628,7 +2568,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2645,7 +2584,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2714,7 +2652,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2731,7 +2668,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2800,7 +2736,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2817,7 +2752,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2886,7 +2820,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2903,7 +2836,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -2972,7 +2904,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -2989,7 +2920,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3058,7 +2988,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3075,7 +3004,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3144,7 +3072,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3161,7 +3088,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3230,7 +3156,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3247,7 +3172,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3316,7 +3240,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3333,7 +3256,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3402,7 +3324,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3419,7 +3340,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3488,7 +3408,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3505,7 +3424,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3574,7 +3492,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3591,7 +3508,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3660,7 +3576,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3677,7 +3592,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3746,7 +3660,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3763,7 +3676,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3832,7 +3744,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3849,7 +3760,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -3918,7 +3828,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -3935,7 +3844,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4004,7 +3912,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4021,7 +3928,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4090,7 +3996,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4107,7 +4012,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4176,7 +4080,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4193,7 +4096,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4262,7 +4164,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4279,7 +4180,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4348,7 +4248,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4365,7 +4264,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4434,7 +4332,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4451,7 +4348,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4520,7 +4416,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4537,7 +4432,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4606,7 +4500,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4623,7 +4516,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4692,7 +4584,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4709,7 +4600,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4778,7 +4668,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4795,7 +4684,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4864,7 +4752,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4881,7 +4768,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -4950,7 +4836,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -4967,7 +4852,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -5036,7 +4920,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -5053,7 +4936,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -5122,7 +5004,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -5139,7 +5020,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -5208,7 +5088,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -5225,7 +5104,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -5294,7 +5172,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -5311,7 +5188,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,
@@ -5380,7 +5256,6 @@
   "naming_series": null,
   "net_weight": 0.0,
   "opening_stock": 0.0,
-  "publish_in_hub": 1,
   "quality_parameters": [],
   "reorder_levels": [],
   "route": null,
@@ -5397,7 +5272,6 @@
   "taxes": [],
   "thumbnail": null,
   "tolerance": 0.0,
-  "total_projected_qty": 0.0,
   "uoms": [
    {
     "conversion_factor": 1.0,

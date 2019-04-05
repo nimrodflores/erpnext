@@ -1,6 +1,7 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # License: GNU General Public License v3. See license.txt
 
+from __future__ import unicode_literals
 import frappe
 import erpnext
 from frappe.utils import flt, nowdate, add_days, cint
@@ -85,18 +86,22 @@ def get_item_warehouse_projected_qty(items_to_consider):
 		from tabBin where item_code in ({0})
 			and (warehouse != "" and warehouse is not null)"""\
 		.format(", ".join(["%s"] * len(items_to_consider))), items_to_consider):
-		
-		item_warehouse_projected_qty.setdefault(item_code, {})[warehouse] = flt(projected_qty)
-		
+
+		if item_code not in item_warehouse_projected_qty:
+			item_warehouse_projected_qty.setdefault(item_code, {})
+
+		if warehouse not in item_warehouse_projected_qty.get(item_code):
+			item_warehouse_projected_qty[item_code][warehouse] = flt(projected_qty)
+
 		warehouse_doc = frappe.get_doc("Warehouse", warehouse)
-		
+
 		while warehouse_doc.parent_warehouse:
 			if not item_warehouse_projected_qty.get(item_code, {}).get(warehouse_doc.parent_warehouse):
 				item_warehouse_projected_qty.setdefault(item_code, {})[warehouse_doc.parent_warehouse] = flt(projected_qty)
 			else:
 				item_warehouse_projected_qty[item_code][warehouse_doc.parent_warehouse] += flt(projected_qty)
 			warehouse_doc = frappe.get_doc("Warehouse", warehouse_doc.parent_warehouse)
-				
+
 	return item_warehouse_projected_qty
 
 def create_material_request(material_requests):
@@ -134,7 +139,7 @@ def create_material_request(material_requests):
 					if request_type == 'Purchase':
 						uom = item.purchase_uom or item.stock_uom
 						if uom != item.stock_uom:
-							conversion_factor = frappe.db.get_value("UOM Conversion Detail", 
+							conversion_factor = frappe.db.get_value("UOM Conversion Detail",
 								{'parent': item.name, 'uom': uom}, 'conversion_factor') or 1.0
 
 					mr.append("items", {

@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import frappe
 from erpnext.hr.doctype.payroll_entry.payroll_entry import get_month_details
 from frappe.utils import cint
@@ -9,8 +10,7 @@ def execute():
 
 	salary_slips = frappe.db.sql("""select month, name, fiscal_year from `tabSalary Slip`
 				where (month is not null and month != '') and
-				(start_date is null  or start_date = '') and
-				(end_date is null  or end_date = '') and docstatus != 2""", as_dict=True)
+				start_date is null and end_date is null and docstatus != 2""", as_dict=True)
 
 	for salary_slip in salary_slips:
 		if not cint(salary_slip.month):

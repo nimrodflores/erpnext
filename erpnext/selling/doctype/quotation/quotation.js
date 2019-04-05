@@ -41,8 +41,12 @@ erpnext.selling.QuotationController = erpnext.selling.SellingController.extend({
 
 		var me = this;
 
-		if (doc.__islocal) {
-			this.frm.set_value('valid_till', frappe.datetime.add_months(doc.transaction_date, 1))
+		if (doc.__islocal && !doc.valid_till) {
+			if(frappe.boot.sysdefaults.quotation_valid_till){
+				this.frm.set_value('valid_till', frappe.datetime.add_days(doc.transaction_date, frappe.boot.sysdefaults.quotation_valid_till));
+			} else {
+				this.frm.set_value('valid_till', frappe.datetime.add_months(doc.transaction_date, 1));
+			}
 		}
 
 		if(doc.docstatus == 1 && doc.status!=='Lost') {
@@ -56,7 +60,7 @@ erpnext.selling.QuotationController = erpnext.selling.SellingController.extend({
 					cur_frm.cscript['Declare Order Lost']);
 			}
 
-			if(!doc.subscription) {
+			if(!doc.auto_repeat) {
 				cur_frm.add_custom_button(__('Subscription'), function() {
 					erpnext.utils.make_subscription(doc.doctype, doc.name)
 				}, __("Make"))
@@ -82,8 +86,8 @@ erpnext.selling.QuotationController = erpnext.selling.SellingController.extend({
 						get_query_filters: {
 							status: ["not in", ["Lost", "Closed"]],
 							company: me.frm.doc.company,
-							// cannot set enquiry_type as setter, as the fieldname is order_type
-							enquiry_type: me.frm.doc.order_type,
+							// cannot set opportunity_type as setter, as the fieldname is order_type
+							opportunity_type: me.frm.doc.order_type,
 						}
 					})
 				}, __("Get items from"), "btn-default");
@@ -186,7 +190,7 @@ cur_frm.cscript['Declare Order Lost'] = function(){
 		return cur_frm.call({
 			method: "declare_order_lost",
 			doc: cur_frm.doc,
-			args: args.reason,
+			args: args,
 			callback: function(r) {
 				if(r.exc) {
 					frappe.msgprint(__("There were errors."));
@@ -202,12 +206,7 @@ cur_frm.cscript['Declare Order Lost'] = function(){
 
 }
 
-cur_frm.cscript.on_submit = function(doc, cdt, cdn) {
-	if(cint(frappe.boot.notification_settings.quotation))
-		cur_frm.email_doc(frappe.boot.notification_settings.quotation_message);
-}
-
-frappe.ui.form.on("Quotation Item", "items_on_form_rendered", function(frm, cdt, cdn) {
+frappe.ui.form.on("Quotation Item", "items_on_form_rendered", "packed_items_on_form_rendered", function(frm, cdt, cdn) {
 	// enable tax_amount field if Actual
 })
 

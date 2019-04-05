@@ -88,16 +88,14 @@ def make_attendance_records(student, student_name, status, course_schedule=None,
 	:param course_schedule: Course Schedule.
 	:param status: Status (Present/Absent)
 	"""
-	student_attendance_list = frappe.get_list("Student Attendance", fields = ['name'], filters = {
+	student_attendance = frappe.get_doc({
+		"doctype": "Student Attendance", 
 		"student": student,
 		"course_schedule": course_schedule,
 		"student_group": student_group,
 		"date": date
 	})
-		
-	if student_attendance_list:
-		student_attendance = frappe.get_doc("Student Attendance", student_attendance_list[0])
-	else:
+	if not student_attendance:
 		student_attendance = frappe.new_doc("Student Attendance")
 	student_attendance.student = student
 	student_attendance.student_name = student_name
@@ -189,7 +187,7 @@ def get_course_schedule_events(start, end, filters=None):
 	from frappe.desk.calendar import get_event_conditions
 	conditions = get_event_conditions("Course Schedule", filters)
 
-	data = frappe.db.sql("""select name, course,
+	data = frappe.db.sql("""select name, course, color,
 			timestamp(schedule_date, from_time) as from_datetime,
 			timestamp(schedule_date, to_time) as to_datetime,
 			room, student_group, 0 as 'allDay'
@@ -269,7 +267,10 @@ def get_grade(grading_scale, percentage):
 	:param Percentage: Score Percentage Percentage
 	"""
 	grading_scale_intervals = {}
-	for d in frappe.get_all("Grading Scale Interval", fields=["grade_code", "threshold"], filters={"parent": grading_scale}):
+	if not hasattr(frappe.local, 'grading_scale'):
+		grading_scale = frappe.get_all("Grading Scale Interval", fields=["grade_code", "threshold"], filters={"parent": grading_scale})
+		frappe.local.grading_scale = grading_scale
+	for d in frappe.local.grading_scale:
 		grading_scale_intervals.update({d.threshold:d.grade_code})
 	intervals = sorted(grading_scale_intervals.keys(), key=float, reverse=True)
 	for interval in intervals:
@@ -332,7 +333,7 @@ def get_assessment_result_doc(student, assessment_plan):
 		if doc.docstatus == 0:
 			return doc
 		elif doc.docstatus == 1:
-			frappe.msgprint("Result already Submitted")
+			frappe.msgprint(_("Result already Submitted"))
 			return None
 	else:
 		return frappe.new_doc("Assessment Result")

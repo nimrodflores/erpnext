@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from frappe import _
 
 def get_data():
@@ -125,6 +126,11 @@ def get_data():
 					"icon": "fa fa-sitemap",
 					"link": "Tree/Sales Person",
 					"description": _("Manage Sales Person Tree."),
+				},
+				{
+					"type": "doctype",
+					"name": "Lead Source",
+					"description": _("Track Leads by Lead Source.")
 				},
 			]
 		},

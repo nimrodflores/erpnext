@@ -8,21 +8,10 @@ import frappe.defaults
 from frappe.model.document import Document
 
 class Bin(Document):
-	def validate(self):
+	def before_save(self):
 		if self.get("__islocal") or not self.stock_uom:
-			self.stock_uom = frappe.db.get_value('Item', self.item_code, 'stock_uom')
-
-		self.validate_mandatory()
+			self.stock_uom = frappe.get_cached_value('Item', self.item_code, 'stock_uom')
 		self.set_projected_qty()
-
-	def on_update(self):
-		update_item_projected_qty(self.item_code)
-
-	def validate_mandatory(self):
-		qf = ['actual_qty', 'reserved_qty', 'ordered_qty', 'indented_qty']
-		for f in qf:
-			if (not getattr(self, f, None)) or (not self.get(f)):
-				self.set(f, 0.0)
 
 	def update_stock(self, args, allow_negative_stock=False, via_landed_cost_voucher=False):
 		'''Called from erpnext.stock.utils.update_bin'''
@@ -78,15 +67,17 @@ class Bin(Document):
 
 	def update_reserved_qty_for_production(self):
 		'''Update qty reserved for production from Production Item tables
-			in open production orders'''
-		self.reserved_qty_for_production = frappe.db.sql('''select sum(required_qty - transferred_qty)
-			from `tabProduction Order` pro, `tabProduction Order Item` item
+			in open work orders'''
+		self.reserved_qty_for_production = frappe.db.sql('''
+			select sum(item.required_qty - item.transferred_qty)
+			from `tabWork Order` pro, `tabWork Order Item` item
 			where
 				item.item_code = %s
 				and item.parent = pro.name
 				and pro.docstatus = 1
 				and item.source_warehouse = %s
-				and pro.status not in ("Stopped", "Completed")''', (self.item_code, self.warehouse))[0][0]
+				and pro.status not in ("Stopped", "Completed")
+				and item.required_qty > item.transferred_qty''', (self.item_code, self.warehouse))[0][0]
 
 		self.set_projected_qty()
 
@@ -117,24 +108,23 @@ class Bin(Document):
 				se.docstatus=1
 				and se.purpose='Subcontract'
 				and ifnull(se.purchase_order, '') !=''
-				and sed.item_code = %s
+				and (sed.item_code = %(item)s or sed.original_item = %(item)s)
 				and se.name = sed.parent
 				and se.purchase_order = po.name
 				and po.docstatus = 1
 				and po.is_subcontracted = 'Yes'
 				and po.status != 'Closed'
 				and po.per_received < 100
-		""", (self.item_code))[0][0]
+		""", {'item': self.item_code})[0][0]
 
-		self.db_set('reserved_qty_for_sub_contract', (reserved_qty_for_sub_contract - materials_transferred))
+		if reserved_qty_for_sub_contract > materials_transferred:
+			reserved_qty_for_sub_contract = reserved_qty_for_sub_contract - materials_transferred
+		else:
+			reserved_qty_for_sub_contract = 0
+
+		self.db_set('reserved_qty_for_sub_contract', reserved_qty_for_sub_contract)
 		self.set_projected_qty()
 		self.db_set('projected_qty', self.projected_qty)
-
-def update_item_projected_qty(item_code):
-	'''Set total_projected_qty in Item as sum of projected qty in all warehouses'''
-	frappe.db.sql('''update tabItem set
-		total_projected_qty = ifnull((select sum(projected_qty) from tabBin where item_code=%s), 0)
-		where name=%s''', (item_code, item_code))
 
 def on_doctype_update():
 	frappe.db.add_index("Bin", ["item_code", "warehouse"])
